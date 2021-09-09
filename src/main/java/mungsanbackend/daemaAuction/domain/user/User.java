@@ -1,11 +1,11 @@
 package mungsanbackend.daemaAuction.domain.user;
 
 import mungsanbackend.daemaAuction.domain.BaseTimeEntity;
+import mungsanbackend.daemaAuction.domain.product.Product;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User extends BaseTimeEntity {
@@ -16,7 +16,11 @@ public class User extends BaseTimeEntity {
 
     private String name;
 
-    private int immePrice;
+    @Column(length = 4)
+    private int gcn;
 
-    private int auctionPrice;
+    private String email;
+
+    @OneToMany(mappedBy = "user")
+    private List<Product> products = new ArrayList<>();
 }
