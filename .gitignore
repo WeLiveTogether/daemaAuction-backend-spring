@@ -18,6 +18,9 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+Procfile
+system.properties
+/src/main/resources/application.properties
 .idea
 *.iws
 *.iml

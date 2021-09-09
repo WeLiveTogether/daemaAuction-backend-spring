@@ -1,14 +1,16 @@
 package mungsanbackend.daemaAuction.domain.product;
 
-import com.sun.istack.NotNull;
+import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.BaseTimeEntity;
 import mungsanbackend.daemaAuction.domain.category.Category;
-import mungsanbackend.daemaAuction.domain.category.subCateogory.SubCateogory;
+import mungsanbackend.daemaAuction.domain.category.subCategory.SubCategory;
 import mungsanbackend.daemaAuction.domain.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Getter
 public class Product extends BaseTimeEntity {
 
     @Id
@@ -34,5 +36,5 @@ public class Product extends BaseTimeEntity {
 
     @ManyToOne
     @JoinColumn(name = "subCategory_id")
-    private SubCateogory subCateogory;
+    private SubCategory subCategory;
 }
