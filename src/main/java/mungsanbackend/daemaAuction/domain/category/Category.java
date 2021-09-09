@@ -1,7 +1,6 @@
 package mungsanbackend.daemaAuction.domain.category;
 
 import lombok.Getter;
-import mungsanbackend.daemaAuction.domain.category.subCateogory.SubCateogory;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,8 +17,5 @@ public class Category {
 
     @NotNull
     private String name;
-
-    @OneToMany(mappedBy = "category")
-    private List<SubCateogory> cateogories = new ArrayList<>();
 
 }
