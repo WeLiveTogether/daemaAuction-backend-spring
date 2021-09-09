@@ -1,13 +1,15 @@
 package mungsanbackend.daemaAuction.domain.category;
 
-import com.sun.istack.NotNull;
+import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.category.subCateogory.SubCateogory;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 public class Category {
 
     @Id

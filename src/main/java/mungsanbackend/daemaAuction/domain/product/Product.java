@@ -1,14 +1,16 @@
 package mungsanbackend.daemaAuction.domain.product;
 
-import com.sun.istack.NotNull;
+import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.BaseTimeEntity;
 import mungsanbackend.daemaAuction.domain.category.Category;
 import mungsanbackend.daemaAuction.domain.category.subCateogory.SubCateogory;
 import mungsanbackend.daemaAuction.domain.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Getter
 public class Product extends BaseTimeEntity {
 
     @Id

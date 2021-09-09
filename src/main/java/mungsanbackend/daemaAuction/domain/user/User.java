@@ -1,5 +1,6 @@
 package mungsanbackend.daemaAuction.domain.user;
 
+import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.BaseTimeEntity;
 import mungsanbackend.daemaAuction.domain.product.Product;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 public class User extends BaseTimeEntity {
 
     @Id
