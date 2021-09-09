@@ -1,7 +1,7 @@
 package mungsanbackend.daemaAuction.domain.category;
 
 import com.sun.istack.NotNull;
-import mungsanbackend.daemaAuction.domain.category.subCateogory.SubCateogory;
+import mungsanbackend.daemaAuction.domain.category.subCategory.SubCategory;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,6 +18,6 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private List<SubCateogory> cateogories = new ArrayList<>();
+    private List<SubCategory> categories = new ArrayList<>();
 
 }
