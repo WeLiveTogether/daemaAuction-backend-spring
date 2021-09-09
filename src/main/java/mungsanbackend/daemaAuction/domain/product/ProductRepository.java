@@ -1,2 +1,6 @@
-package mungsanbackend.daemaAuction.domain.product;public interface ProductRepository {
+package mungsanbackend.daemaAuction.domain.product;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }
