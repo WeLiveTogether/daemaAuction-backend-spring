@@ -1,6 +1,7 @@
 package mungsanbackend.daemaAuction.domain.category;
 
 import lombok.Getter;
+import mungsanbackend.daemaAuction.domain.category.subCategory.SubCategory;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
