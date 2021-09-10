@@ -5,6 +5,7 @@ import mungsanbackend.daemaAuction.domain.room.Room;
 import mungsanbackend.daemaAuction.domain.user.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Entity
@@ -18,10 +19,12 @@ public class Message {
 
     private String context;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime sendAt;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
