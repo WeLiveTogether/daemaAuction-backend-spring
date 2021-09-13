@@ -1,5 +1,6 @@
 package mungsanbackend.daemaAuction.domain.category;
 
+import lombok.Builder;
 import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.category.subCategory.SubCategory;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Builder
 public class Category {
 
     @Id

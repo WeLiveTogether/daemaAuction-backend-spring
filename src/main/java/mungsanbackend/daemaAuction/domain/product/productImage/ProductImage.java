@@ -1,5 +1,6 @@
 package mungsanbackend.daemaAuction.domain.product.productImage;
 
+import lombok.Builder;
 import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.product.Product;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Getter
+@Builder
 public class ProductImage {
 
     @Id

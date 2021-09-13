@@ -1,5 +1,6 @@
 package mungsanbackend.daemaAuction.domain.message;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mungsanbackend.daemaAuction.domain.room.Room;
@@ -11,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Getter
+@Builder
 public class Message {
 
     @Id

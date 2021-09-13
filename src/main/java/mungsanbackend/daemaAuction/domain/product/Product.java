@@ -1,5 +1,6 @@
 package mungsanbackend.daemaAuction.domain.product;
 
+import lombok.Builder;
 import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.BaseTimeEntity;
 import mungsanbackend.daemaAuction.domain.category.Category;
@@ -12,6 +13,7 @@ import java.util.Date;
 
 @Entity
 @Getter
+@Builder
 public class Product extends BaseTimeEntity {
 
     @Id

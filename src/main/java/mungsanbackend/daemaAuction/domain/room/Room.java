@@ -1,5 +1,7 @@
 package mungsanbackend.daemaAuction.domain.room;
 
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mungsanbackend.daemaAuction.domain.room.joinRoom.JoinRoom;
 
@@ -9,6 +11,8 @@ import java.util.List;
 
 @NoArgsConstructor
 @Entity
+@Getter
+@Builder
 public class Room {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
