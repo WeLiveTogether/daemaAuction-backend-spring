@@ -1,14 +1,16 @@
 package mungsanbackend.daemaAuction.domain.message;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mungsanbackend.daemaAuction.domain.room.Room;
 import mungsanbackend.daemaAuction.domain.user.User;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @NoArgsConstructor
 @Entity
+@Getter
 public class Message {
 
     @Id
@@ -20,7 +22,7 @@ public class Message {
     private String context;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime sendAt;
+    private Date sendAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

@@ -8,7 +8,7 @@ import mungsanbackend.daemaAuction.domain.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -28,7 +28,7 @@ public class Product extends BaseTimeEntity {
     private int auctionPrice; //현재가 & 시작가
 
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime startAt; // 생성 시간
+    private Date startAt; // 생성 시간
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
