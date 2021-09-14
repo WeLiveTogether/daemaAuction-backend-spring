@@ -1,5 +1,6 @@
 package mungsanbackend.daemaAuction.domain.room.joinRoom;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import mungsanbackend.daemaAuction.domain.user.User;
 import javax.persistence.*;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Getter
 @Builder

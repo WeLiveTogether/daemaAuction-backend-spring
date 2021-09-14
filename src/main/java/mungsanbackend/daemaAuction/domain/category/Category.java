@@ -1,7 +1,9 @@
 package mungsanbackend.daemaAuction.domain.category;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import mungsanbackend.daemaAuction.domain.category.subCategory.SubCategory;
 
 import javax.persistence.*;
@@ -9,6 +11,8 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Getter
 @Builder

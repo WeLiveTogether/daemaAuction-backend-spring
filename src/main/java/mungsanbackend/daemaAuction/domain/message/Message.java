@@ -1,5 +1,6 @@
 package mungsanbackend.daemaAuction.domain.message;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Getter
 @Builder
