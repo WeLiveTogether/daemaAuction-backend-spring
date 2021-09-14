@@ -7,11 +7,14 @@ import lombok.NoArgsConstructor;
 import mungsanbackend.daemaAuction.domain.BaseTimeEntity;
 import mungsanbackend.daemaAuction.domain.category.Category;
 import mungsanbackend.daemaAuction.domain.category.subCategory.SubCategory;
+import mungsanbackend.daemaAuction.domain.product.productImage.ProductImage;
 import mungsanbackend.daemaAuction.domain.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,6 +38,9 @@ public class Product extends BaseTimeEntity {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date startAt; // 생성 시간
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductImage> productImages = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
