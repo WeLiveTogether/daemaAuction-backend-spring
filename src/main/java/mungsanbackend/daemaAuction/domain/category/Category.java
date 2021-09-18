@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import mungsanbackend.daemaAuction.domain.category.subCategory.SubCategory;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String name;
 
     @OneToMany(mappedBy = "category")
