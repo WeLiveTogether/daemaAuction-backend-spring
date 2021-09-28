@@ -1,27 +1,34 @@
-package mungsanbackend.daemaAuction.domain.category.subCategory;
+package mungsanbackend.daemaAuction.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import mungsanbackend.daemaAuction.domain.category.Category;
+import mungsanbackend.daemaAuction.domain.Product;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter
 @Builder
-public class SubCategory {
+public class ProductImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String name;
 
+    @NotEmpty
+    private String path;
+
+    private Long size;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

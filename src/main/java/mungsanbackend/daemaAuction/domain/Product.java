@@ -1,14 +1,9 @@
-package mungsanbackend.daemaAuction.domain.product;
+package mungsanbackend.daemaAuction.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import mungsanbackend.daemaAuction.domain.BaseTimeEntity;
-import mungsanbackend.daemaAuction.domain.category.Category;
-import mungsanbackend.daemaAuction.domain.category.subCategory.SubCategory;
-import mungsanbackend.daemaAuction.domain.product.productImage.ProductImage;
-import mungsanbackend.daemaAuction.domain.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

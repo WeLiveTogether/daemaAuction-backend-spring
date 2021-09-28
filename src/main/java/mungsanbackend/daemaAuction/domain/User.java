@@ -1,12 +1,12 @@
-package mungsanbackend.daemaAuction.domain.user;
+package mungsanbackend.daemaAuction.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import mungsanbackend.daemaAuction.domain.BaseTimeEntity;
-import mungsanbackend.daemaAuction.domain.product.Product;
-import mungsanbackend.daemaAuction.domain.room.joinRoom.JoinRoom;
+import mungsanbackend.daemaAuction.domain.Product;
+import mungsanbackend.daemaAuction.domain.JoinRoom;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -1,10 +1,10 @@
-package mungsanbackend.daemaAuction.domain.room;
+package mungsanbackend.daemaAuction.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import mungsanbackend.daemaAuction.domain.room.joinRoom.JoinRoom;
+import mungsanbackend.daemaAuction.domain.JoinRoom;
 
 import javax.persistence.*;
 import java.util.ArrayList;
