@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter
@@ -22,6 +21,7 @@ public class Room {
 
     private int msgCnt;
 
+    @Builder.Default
     @OneToMany(mappedBy = "room")
     private List<JoinRoom> joinRooms= new ArrayList<>();
 }

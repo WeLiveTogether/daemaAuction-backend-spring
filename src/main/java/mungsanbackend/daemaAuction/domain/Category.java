@@ -3,14 +3,11 @@ package mungsanbackend.daemaAuction.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import mungsanbackend.daemaAuction.domain.SubCategory;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter
@@ -23,6 +20,7 @@ public class Category {
 
     private String name;
 
+    @Builder.Default
     @OneToMany(mappedBy = "category")
     private List<SubCategory> categories = new ArrayList<>();
 

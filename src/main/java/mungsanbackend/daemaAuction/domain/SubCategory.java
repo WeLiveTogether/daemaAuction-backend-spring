@@ -3,11 +3,9 @@ package mungsanbackend.daemaAuction.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter

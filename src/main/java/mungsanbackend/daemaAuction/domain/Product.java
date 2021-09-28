@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter
@@ -34,6 +33,7 @@ public class Product extends BaseTimeEntity {
     @Temporal(TemporalType.TIMESTAMP)
     private Date startAt; // 생성 시간
 
+    @Builder.Default
     @OneToMany(mappedBy = "product")
     private List<ProductImage> productImages = new ArrayList<>();
 

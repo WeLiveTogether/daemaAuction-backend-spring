@@ -12,7 +12,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter
@@ -30,9 +29,11 @@ public class User extends BaseTimeEntity {
 
     private String email;
 
+    @Builder.Default
     @OneToMany(mappedBy = "user")
     private List<Product> products = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "user")
     private List<JoinRoom> joinRooms= new ArrayList<>();
 }

@@ -9,7 +9,6 @@ import mungsanbackend.daemaAuction.domain.Product;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter
