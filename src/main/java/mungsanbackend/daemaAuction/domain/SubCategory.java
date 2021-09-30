@@ -25,6 +25,6 @@ public class SubCategory {
     private Category category;
 
     @Builder.Default
-    @OneToMany(mappedBy = "sub_category")
+    @OneToMany(mappedBy = "subCategory")
     private List<Product> products = new ArrayList<>();
 }
