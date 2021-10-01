@@ -1,14 +1,14 @@
 package mungsanbackend.daemaAuction.oauth.token;
 
+import mungsanbackend.daemaAuction.oauth.exception.TokenValidFailedException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
-import mungsanbackend.daemaAuction.domain.User;
-import mungsanbackend.daemaAuction.oauth.exception.TokenValidFailedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
 import java.security.Key;
 import java.util.Arrays;
