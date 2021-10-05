@@ -3,7 +3,6 @@ package mungsanbackend.daemaAuction.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -42,10 +41,7 @@ public class Product extends BaseTimeEntity {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subCategory_id")
+    @JoinColumn(name = "sub_category_id")
     private SubCategory subCategory;
+
 }
