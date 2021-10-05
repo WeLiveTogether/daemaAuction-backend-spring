@@ -21,12 +21,6 @@ public class ProductController {
     private final ProductService productService;
 
     @Operation(summary = "get product list")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "OK !!"),
-            @ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
-            @ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
-            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
-    })
     @GetMapping("/products")
     public ResponseEntity<List<ProductResponse>> productList() {
         return ResponseEntity.ok(productService.getProductList());
