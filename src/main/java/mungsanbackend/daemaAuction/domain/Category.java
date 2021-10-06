@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Builder
 public class Category {
 
     @Id
@@ -20,7 +19,6 @@ public class Category {
 
     private String name;
 
-    @Builder.Default
     @OneToMany(mappedBy = "category")
     private List<SubCategory> subCategories = new ArrayList<>();
 }

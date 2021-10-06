@@ -15,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Builder
 public class User extends BaseTimeEntity {
 
     @Id
@@ -29,11 +28,9 @@ public class User extends BaseTimeEntity {
 
     private String email;
 
-    @Builder.Default
     @OneToMany(mappedBy = "user")
     private List<Product> products = new ArrayList<>();
 
-    @Builder.Default
     @OneToMany(mappedBy = "user")
     private List<JoinRoom> joinRooms= new ArrayList<>();
 }

@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Builder
 public class Room {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +20,6 @@ public class Room {
 
     private int msgCnt;
 
-    @Builder.Default
     @OneToMany(mappedBy = "room")
     private List<JoinRoom> joinRooms= new ArrayList<>();
 }

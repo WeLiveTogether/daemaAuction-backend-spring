@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Builder
 public class SubCategory {
 
     @Id
@@ -24,7 +23,6 @@ public class SubCategory {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @Builder.Default
     @OneToMany(mappedBy = "subCategory")
     private List<Product> products = new ArrayList<>();
 }

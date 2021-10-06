@@ -10,7 +10,6 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Getter
-@Builder
 public class JoinRoom {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

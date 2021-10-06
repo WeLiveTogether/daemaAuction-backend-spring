@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Builder
 public class Product extends BaseTimeEntity {
 
     @Id
@@ -34,7 +33,6 @@ public class Product extends BaseTimeEntity {
 
     private Integer views = 0; // 조회수
 
-    @Builder.Default
     @OneToMany(mappedBy = "product")
     private List<ProductImage> productImages = new ArrayList<>();
 

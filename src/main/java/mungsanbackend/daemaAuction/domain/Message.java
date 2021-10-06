@@ -11,7 +11,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Getter
-@Builder
 public class Message {
 
     @Id

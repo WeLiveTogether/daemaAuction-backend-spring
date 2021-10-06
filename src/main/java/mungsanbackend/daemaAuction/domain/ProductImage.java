@@ -12,7 +12,6 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 @Entity
 @Getter
-@Builder
 public class ProductImage {
 
     @Id
