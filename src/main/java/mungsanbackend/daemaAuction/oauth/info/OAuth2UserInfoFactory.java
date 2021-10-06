@@ -1,6 +1,10 @@
 package mungsanbackend.daemaAuction.oauth.info;
 
 import mungsanbackend.daemaAuction.oauth.entity.ProviderType;
+import mungsanbackend.daemaAuction.oauth.info.impl.FacebookOAuth2UserInfo;
+import mungsanbackend.daemaAuction.oauth.info.impl.GoogleOAuth2UserInfo;
+import mungsanbackend.daemaAuction.oauth.info.impl.KakaoOAuth2UserInfo;
+import mungsanbackend.daemaAuction.oauth.info.impl.NaverOAuth2UserInfo;
 
 import java.util.Map;
 
