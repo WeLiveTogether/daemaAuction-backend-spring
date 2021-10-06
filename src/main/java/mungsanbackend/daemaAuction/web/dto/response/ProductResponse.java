@@ -15,8 +15,9 @@ public class ProductResponse {
 
     private Long productId;
     private String name;
-    private int immePrice;
-    private int auctionPrice;
+    private Integer immePrice;
+    private Integer auctionPrice;
+    private Integer views;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date startAt;
@@ -27,6 +28,7 @@ public class ProductResponse {
                 .name(product.getName())
                 .immePrice(product.getImmePrice())
                 .auctionPrice(product.getAuctionPrice())
+                .views(product.getViews())
                 .startAt(product.getStartAt())
                 .build();
     }
