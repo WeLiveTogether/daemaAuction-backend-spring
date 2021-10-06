@@ -1,11 +1,11 @@
 package mungsanbackend.daemaAuction.domain.user;
 
 import mungsanbackend.daemaAuction.domain.Product;
-import mungsanbackend.daemaAuction.domain.User;
+import mungsanbackend.daemaAuction.api.entity.user.User;
 import mungsanbackend.daemaAuction.repository.ProductRepository;
 import mungsanbackend.daemaAuction.domain.JoinRoom;
 import mungsanbackend.daemaAuction.repository.JoinRoomRepository;
-import mungsanbackend.daemaAuction.repository.UserRepository;
+import mungsanbackend.daemaAuction.api.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
