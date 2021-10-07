@@ -30,7 +30,6 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	//mysql
-	implementation 'mysql:mysql-connector-java:8.0.26'
 	runtimeOnly 'mysql:mysql-connector-java'
 
 	// Security
@@ -48,12 +47,11 @@ dependencies {
 
 }
 
-test {
-	useJUnitPlatform()
+configurations {
+	all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	all*.exclude group: 'org.springframework.boot', module: 'logback-classic'
 }
 
-configurations {
-	all {
-		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-	}
+test {
+	useJUnitPlatform()
 }

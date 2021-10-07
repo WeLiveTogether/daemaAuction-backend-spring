@@ -15,10 +15,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 })
 public class DaemaAuctionApplication {
 
-	static {
-		System.setProperty("spring.config.location", "classpath:/application.yml,classpath:/application-security.yml");
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(DaemaAuctionApplication.class, args);
 	}
