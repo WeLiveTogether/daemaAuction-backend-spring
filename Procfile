@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -jar target/daemaAuction-1.0.0.jar
