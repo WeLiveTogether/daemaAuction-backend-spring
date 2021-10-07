@@ -11,6 +11,7 @@ import mungsanbackend.daemaAuction.oauth.handler.OAuth2AuthenticationFailureHand
 import mungsanbackend.daemaAuction.oauth.handler.OAuth2AuthenticationSuccessHandler;
 import mungsanbackend.daemaAuction.oauth.handler.TokenAccessDeniedHandler;
 import mungsanbackend.daemaAuction.oauth.service.CustomOAuth2UserService;
+import mungsanbackend.daemaAuction.oauth.service.CustomUserDetailsService;
 import mungsanbackend.daemaAuction.oauth.token.AuthTokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
