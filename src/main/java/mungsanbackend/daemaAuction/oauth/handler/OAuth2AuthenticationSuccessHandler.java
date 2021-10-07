@@ -11,6 +11,7 @@ import mungsanbackend.daemaAuction.oauth.info.OAuth2UserInfo;
 import mungsanbackend.daemaAuction.oauth.info.OAuth2UserInfoFactory;
 import mungsanbackend.daemaAuction.oauth.token.AuthToken;
 import mungsanbackend.daemaAuction.oauth.token.AuthTokenProvider;
+import mungsanbackend.daemaAuction.utils.CookieUtil;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;

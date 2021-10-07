@@ -11,6 +11,7 @@ import mungsanbackend.daemaAuction.oauth.entity.RoleType;
 import mungsanbackend.daemaAuction.oauth.entity.UserPrincipal;
 import mungsanbackend.daemaAuction.oauth.token.AuthToken;
 import mungsanbackend.daemaAuction.oauth.token.AuthTokenProvider;
+import mungsanbackend.daemaAuction.utils.CookieUtil;
 import mungsanbackend.daemaAuction.utils.HeaderUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
