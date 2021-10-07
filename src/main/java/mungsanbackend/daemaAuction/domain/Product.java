@@ -3,7 +3,6 @@ package mungsanbackend.daemaAuction.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import mungsanbackend.daemaAuction.api.entity.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -32,6 +31,8 @@ public class Product extends BaseTimeEntity {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date startAt; // 생성 시간
+
+    private Long views = 0L; // 조회수
 
     @Builder.Default
     @OneToMany(mappedBy = "product")

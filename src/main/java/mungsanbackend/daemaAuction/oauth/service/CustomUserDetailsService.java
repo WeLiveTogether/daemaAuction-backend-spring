@@ -1,8 +1,8 @@
 package mungsanbackend.daemaAuction.oauth.service;
 
 import lombok.RequiredArgsConstructor;
-import mungsanbackend.daemaAuction.api.entity.user.User;
-import mungsanbackend.daemaAuction.api.repository.UserRepository;
+import mungsanbackend.daemaAuction.domain.User;
+import mungsanbackend.daemaAuction.repository.UserRepository;
 import mungsanbackend.daemaAuction.oauth.entity.UserPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

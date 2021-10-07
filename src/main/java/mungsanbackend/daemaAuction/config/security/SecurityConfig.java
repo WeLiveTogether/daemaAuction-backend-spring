@@ -1,7 +1,7 @@
 package mungsanbackend.daemaAuction.config.security;
 
 import lombok.RequiredArgsConstructor;
-import mungsanbackend.daemaAuction.api.repository.UserRefreshTokenRepository;
+import mungsanbackend.daemaAuction.repository.UserRefreshTokenRepository;
 import mungsanbackend.daemaAuction.config.properties.AppProperties;
 import mungsanbackend.daemaAuction.config.properties.CorsProperties;
 import mungsanbackend.daemaAuction.oauth.entity.RoleType;
@@ -67,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+                .antMatchers("/api/login", "/api/products-latest", "/api/products-popularity").permitAll()
                 .antMatchers("/api/**").hasAnyAuthority(RoleType.USER.getCode())
                 .antMatchers("/api/**/admin/**").hasAnyAuthority(RoleType.ADMIN.getCode())
                 .anyRequest().authenticated()

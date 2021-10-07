@@ -1,4 +1,4 @@
-package mungsanbackend.daemaAuction.api.entity.user;
+package mungsanbackend.daemaAuction.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

@@ -1,8 +1,8 @@
-package mungsanbackend.daemaAuction.api.service;
+package mungsanbackend.daemaAuction.service;
 
 import lombok.RequiredArgsConstructor;
-import mungsanbackend.daemaAuction.api.entity.user.User;
-import mungsanbackend.daemaAuction.api.repository.UserRepository;
+import mungsanbackend.daemaAuction.domain.User;
+import mungsanbackend.daemaAuction.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service

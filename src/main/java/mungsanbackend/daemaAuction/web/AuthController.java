@@ -1,11 +1,12 @@
-package mungsanbackend.daemaAuction.api.controller.auth;
+package mungsanbackend.daemaAuction.web;
 
 import io.jsonwebtoken.Claims;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import mungsanbackend.daemaAuction.api.entity.auth.AuthReqModel;
-import mungsanbackend.daemaAuction.api.entity.user.UserRefreshToken;
-import mungsanbackend.daemaAuction.api.repository.UserRefreshTokenRepository;
-import mungsanbackend.daemaAuction.common.ApiResponse;
+import mungsanbackend.daemaAuction.domain.AuthReqModel;
+import mungsanbackend.daemaAuction.domain.UserRefreshToken;
+import mungsanbackend.daemaAuction.repository.UserRefreshTokenRepository;
+import mungsanbackend.daemaAuction.web.dto.response.ApiResponse;
 import mungsanbackend.daemaAuction.config.properties.AppProperties;
 import mungsanbackend.daemaAuction.oauth.entity.RoleType;
 import mungsanbackend.daemaAuction.oauth.entity.UserPrincipal;
@@ -25,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -37,6 +38,7 @@ public class AuthController {
     private final static long THREE_DAYS_MSEC = 259200000;
     private final static String REFRESH_TOKEN = "refresh_token";
 
+    @Operation(summary = "로그인")
     @PostMapping("/login")
     public ApiResponse login(
             HttpServletRequest request,
@@ -84,6 +86,7 @@ public class AuthController {
         return ApiResponse.success("token", accessToken.getToken());
     }
 
+    @Operation(summary = "refreshToken 발급")
     @GetMapping("/refresh")
     public ApiResponse refreshToken (HttpServletRequest request, HttpServletResponse response) {
         // access token 확인

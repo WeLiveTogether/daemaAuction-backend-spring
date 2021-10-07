@@ -1,4 +1,4 @@
-package mungsanbackend.daemaAuction.common;
+package mungsanbackend.daemaAuction.web.dto.response;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

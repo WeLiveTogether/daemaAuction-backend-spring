@@ -2,8 +2,8 @@ package mungsanbackend.daemaAuction.oauth.handler;
 
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
-import mungsanbackend.daemaAuction.api.entity.user.UserRefreshToken;
-import mungsanbackend.daemaAuction.api.repository.UserRefreshTokenRepository;
+import mungsanbackend.daemaAuction.domain.UserRefreshToken;
+import mungsanbackend.daemaAuction.repository.UserRefreshTokenRepository;
 import mungsanbackend.daemaAuction.config.properties.AppProperties;
 import mungsanbackend.daemaAuction.oauth.entity.ProviderType;
 import mungsanbackend.daemaAuction.oauth.entity.RoleType;

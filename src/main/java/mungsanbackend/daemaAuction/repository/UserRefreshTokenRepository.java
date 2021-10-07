@@ -1,6 +1,6 @@
-package mungsanbackend.daemaAuction.api.repository;
+package mungsanbackend.daemaAuction.repository;
 
-import mungsanbackend.daemaAuction.api.entity.user.UserRefreshToken;
+import mungsanbackend.daemaAuction.domain.UserRefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

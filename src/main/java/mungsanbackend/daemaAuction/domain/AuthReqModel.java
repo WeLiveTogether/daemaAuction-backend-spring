@@ -1,4 +1,4 @@
-package mungsanbackend.daemaAuction.api.entity.auth;
+package mungsanbackend.daemaAuction.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
