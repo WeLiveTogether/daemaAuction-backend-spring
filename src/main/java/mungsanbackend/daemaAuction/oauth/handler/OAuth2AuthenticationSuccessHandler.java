@@ -4,6 +4,7 @@ import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import mungsanbackend.daemaAuction.api.entity.user.UserRefreshToken;
 import mungsanbackend.daemaAuction.api.repository.UserRefreshTokenRepository;
+import mungsanbackend.daemaAuction.config.properties.AppProperties;
 import mungsanbackend.daemaAuction.oauth.entity.ProviderType;
 import mungsanbackend.daemaAuction.oauth.entity.RoleType;
 import mungsanbackend.daemaAuction.oauth.info.OAuth2UserInfo;
@@ -19,10 +20,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
