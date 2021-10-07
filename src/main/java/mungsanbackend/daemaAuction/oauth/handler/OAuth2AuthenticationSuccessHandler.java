@@ -9,6 +9,7 @@ import mungsanbackend.daemaAuction.oauth.entity.ProviderType;
 import mungsanbackend.daemaAuction.oauth.entity.RoleType;
 import mungsanbackend.daemaAuction.oauth.info.OAuth2UserInfo;
 import mungsanbackend.daemaAuction.oauth.info.OAuth2UserInfoFactory;
+import mungsanbackend.daemaAuction.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
 import mungsanbackend.daemaAuction.oauth.token.AuthToken;
 import mungsanbackend.daemaAuction.oauth.token.AuthTokenProvider;
 import mungsanbackend.daemaAuction.utils.CookieUtil;
@@ -28,6 +29,9 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Optional;
+
+import static mungsanbackend.daemaAuction.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
+import static mungsanbackend.daemaAuction.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRepository.REFRESH_TOKEN;
 
 @Component
 @RequiredArgsConstructor

@@ -10,6 +10,7 @@ import mungsanbackend.daemaAuction.oauth.filter.TokenAuthenticationFilter;
 import mungsanbackend.daemaAuction.oauth.handler.OAuth2AuthenticationFailureHandler;
 import mungsanbackend.daemaAuction.oauth.handler.OAuth2AuthenticationSuccessHandler;
 import mungsanbackend.daemaAuction.oauth.handler.TokenAccessDeniedHandler;
+import mungsanbackend.daemaAuction.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
 import mungsanbackend.daemaAuction.oauth.service.CustomOAuth2UserService;
 import mungsanbackend.daemaAuction.oauth.service.CustomUserDetailsService;
 import mungsanbackend.daemaAuction.oauth.token.AuthTokenProvider;

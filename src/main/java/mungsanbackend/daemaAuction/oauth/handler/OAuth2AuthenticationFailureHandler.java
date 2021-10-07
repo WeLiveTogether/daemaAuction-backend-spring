@@ -2,6 +2,7 @@ package mungsanbackend.daemaAuction.oauth.handler;
 
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
+import mungsanbackend.daemaAuction.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRepository;
 import mungsanbackend.daemaAuction.utils.CookieUtil;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
@@ -12,6 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import static mungsanbackend.daemaAuction.oauth.repository.OAuth2AuthorizationRequestBasedOnCookieRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
 
 @Component

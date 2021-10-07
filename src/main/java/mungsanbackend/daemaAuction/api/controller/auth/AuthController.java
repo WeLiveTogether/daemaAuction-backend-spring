@@ -1,4 +1,4 @@
-package mungsanbackend.daemaAuction.api.controller;
+package mungsanbackend.daemaAuction.api.controller.auth;
 
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
