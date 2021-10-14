@@ -1,4 +1,4 @@
-package mungsanbackend.daemaAuction.config.security;
+package mungsanbackend.daemaAuction.config;
 
 import mungsanbackend.daemaAuction.oauth.token.AuthTokenProvider;
 import org.springframework.beans.factory.annotation.Value;

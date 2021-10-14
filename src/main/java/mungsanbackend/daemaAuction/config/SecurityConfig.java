@@ -1,4 +1,4 @@
-package mungsanbackend.daemaAuction.config.security;
+package mungsanbackend.daemaAuction.config;
 
 import lombok.RequiredArgsConstructor;
 import mungsanbackend.daemaAuction.repository.UserRefreshTokenRepository;
