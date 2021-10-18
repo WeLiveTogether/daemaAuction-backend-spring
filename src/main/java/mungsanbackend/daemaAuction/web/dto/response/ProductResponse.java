@@ -14,7 +14,8 @@ import java.util.Date;
 public class ProductResponse {
 
     private Long productId;
-    private String name;
+    private String title;
+    private String content;
     private Integer immePrice;
     private Integer auctionPrice;
     private Long views;
@@ -25,7 +26,8 @@ public class ProductResponse {
     public static ProductResponse of(Product product) {
         return ProductResponse.builder()
                 .productId(product.getId())
-                .name(product.getName())
+                .title(product.getTitle())
+                .content(product.getContent())
                 .immePrice(product.getImmePrice())
                 .auctionPrice(product.getAuctionPrice())
                 .views(product.getViews())
