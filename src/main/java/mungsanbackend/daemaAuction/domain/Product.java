@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
-@Builder
 public class Product extends BaseTimeEntity {
 
     @Id
@@ -21,7 +20,10 @@ public class Product extends BaseTimeEntity {
     private Long id;
 
     @NotNull
-    private String name;
+    private String title;
+
+    @NotNull
+    private String content;
 
     @NotNull
     private int immePrice; // 즉시 구매가
@@ -34,7 +36,6 @@ public class Product extends BaseTimeEntity {
 
     private Long views = 0L; // 조회수
 
-    @Builder.Default
     @OneToMany(mappedBy = "product")
     private List<ProductImage> productImages = new ArrayList<>();
 
@@ -49,4 +50,14 @@ public class Product extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subCategory_id")
     private SubCategory subCategory;
+
+    public Product(@NotNull String title, @NotNull String content, @NotNull int immePrice, @NotNull int auctionPrice, User user, Category category, SubCategory subCategory) {
+        this.title = title;
+        this.content = content;
+        this.immePrice = immePrice;
+        this.auctionPrice = auctionPrice;
+        this.user = user;
+        this.category = category;
+        this.subCategory = subCategory;
+    }
 }
