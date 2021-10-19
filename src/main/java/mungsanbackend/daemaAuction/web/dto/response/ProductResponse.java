@@ -16,8 +16,8 @@ public class ProductResponse {
     private Long productId;
     private String title;
     private String content;
-    private Integer immePrice;
-    private Integer auctionPrice;
+    private int immePrice;
+    private int auctionPrice;
     private Long views;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
