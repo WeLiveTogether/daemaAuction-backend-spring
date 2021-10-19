@@ -2,7 +2,8 @@ package mungsanbackend.daemaAuction.web;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import mungsanbackend.daemaAuction.oauth.annotation.UserId;
+import lombok.extern.slf4j.Slf4j;
+import mungsanbackend.daemaAuction.oauth.annotation.UserSeq;
 import mungsanbackend.daemaAuction.service.ProductService;
 import mungsanbackend.daemaAuction.service.S3UploaderService;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class ProductController {
@@ -35,10 +37,18 @@ public class ProductController {
     }
 
     @Operation(summary = "경매 글 작성")
-    @PostMapping("/product")
-    public ResponseEntity<ProductResponse> addProduct(@RequestBody ProductRequest productRequest, @RequestParam("images")MultipartFile multipartFile, @UserId Long userId) throws IOException {
-        s3UploaderService.upload(multipartFile, "static");
-        return ResponseEntity.ok(productService.createProduct(userId, productRequest));
+    @PostMapping(value = "/product")
+    public ResponseEntity<ProductResponse> addProduct(@RequestBody ProductRequest productRequest) {
+        return ResponseEntity.ok(productService.createProduct(productRequest.getUserSeq(), productRequest));
     }
 
+    @Operation(summary = "사진 업로드")
+    @PostMapping(value = "/product/image/upload")
+    public void upload(@RequestParam(value = "file") MultipartFile multipartFile) throws IOException {
+        if (!multipartFile.isEmpty()) {
+            System.out.println(multipartFile.getName());
+            String url = s3UploaderService.upload(multipartFile, "static");
+            log.info(url);
+        }
+    }
 }
