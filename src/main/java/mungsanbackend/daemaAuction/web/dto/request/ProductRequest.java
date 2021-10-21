@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class ProductRequest {
+    private Long userSeq;
     private String title;
     private String content;
     private int immePrice;

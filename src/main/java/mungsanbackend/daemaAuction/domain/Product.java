@@ -1,8 +1,6 @@
 package mungsanbackend.daemaAuction.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Getter
+@Setter
 public class Product extends BaseTimeEntity {
 
     @Id
