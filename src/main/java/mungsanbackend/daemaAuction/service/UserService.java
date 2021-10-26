@@ -13,4 +13,8 @@ public class UserService {
     public User getUser(String userId) {
         return userRepository.findByUserId(userId);
     }
+
+    public User findUserBySeq(Long seq) {
+        return userRepository.findUserByUserSeq(seq).orElseThrow(() -> new RuntimeException("User를 찾을 수 없습니다."));
+    }
 }

@@ -14,9 +14,10 @@ import java.util.Date;
 public class ProductResponse {
 
     private Long productId;
-    private String name;
-    private Integer immePrice;
-    private Integer auctionPrice;
+    private String title;
+    private String content;
+    private int immePrice;
+    private int auctionPrice;
     private Long views;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -25,7 +26,8 @@ public class ProductResponse {
     public static ProductResponse of(Product product) {
         return ProductResponse.builder()
                 .productId(product.getId())
-                .name(product.getName())
+                .title(product.getTitle())
+                .content(product.getContent())
                 .immePrice(product.getImmePrice())
                 .auctionPrice(product.getAuctionPrice())
                 .views(product.getViews())
