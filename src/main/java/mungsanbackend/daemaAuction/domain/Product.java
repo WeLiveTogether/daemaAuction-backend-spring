@@ -31,9 +31,6 @@ public class Product extends BaseTimeEntity {
     @NotNull
     private int auctionPrice; //현재가 & 시작가
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startAt; // 생성 시간
-
     private Long views = 0L; // 조회수
 
     @OneToMany(mappedBy = "product")
