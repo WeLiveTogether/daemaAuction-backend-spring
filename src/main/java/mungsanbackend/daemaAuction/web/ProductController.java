@@ -3,7 +3,7 @@ package mungsanbackend.daemaAuction.web;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mungsanbackend.daemaAuction.oauth.annotation.UserSeq;
+import mungsanbackend.daemaAuction.domain.Product;
 import mungsanbackend.daemaAuction.service.ProductService;
 import mungsanbackend.daemaAuction.service.S3UploaderService;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
@@ -50,5 +50,11 @@ public class ProductController {
             String url = s3UploaderService.upload(multipartFile, "static");
             log.info(url);
         }
+    }
+
+    @Operation(summary = "경매 물품 상세보기")
+    @GetMapping(value = "/product-details/{productId}")
+    public ResponseEntity<Product> productDetails(@PathVariable("productId") Long productId) {
+        return ResponseEntity.ok(productService.findProductById(productId));
     }
 }
