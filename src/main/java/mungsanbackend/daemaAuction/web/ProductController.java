@@ -44,11 +44,16 @@ public class ProductController {
 
     @Operation(summary = "사진 업로드")
     @PostMapping(value = "/product/image/upload")
-    public void upload(@RequestParam(value = "file") MultipartFile multipartFile) throws IOException {
-        if (!multipartFile.isEmpty()) {
-            System.out.println(multipartFile.getName());
-            String url = s3UploaderService.upload(multipartFile, "static");
-            log.info(url);
+    public void upload(@RequestParam(value = "file") List<MultipartFile> multipartFile) throws IOException {
+
+        for (int i = 0; i < multipartFile.size(); i++) {
+            MultipartFile file = multipartFile.get(i);
+            if (!file.isEmpty()) {
+                System.out.println(file.getName());
+                String url = s3UploaderService.upload(file, "static");
+                log.info(url);
+            }
         }
+
     }
 }
