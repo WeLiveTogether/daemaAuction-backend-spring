@@ -2,9 +2,6 @@ package mungsanbackend.daemaAuction.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import mungsanbackend.daemaAuction.domain.BaseTimeEntity;
-import mungsanbackend.daemaAuction.domain.JoinRoom;
-import mungsanbackend.daemaAuction.domain.Product;
 import mungsanbackend.daemaAuction.oauth.entity.ProviderType;
 import mungsanbackend.daemaAuction.oauth.entity.RoleType;
 

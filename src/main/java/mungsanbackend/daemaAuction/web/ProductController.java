@@ -3,10 +3,10 @@ package mungsanbackend.daemaAuction.web;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import mungsanbackend.daemaAuction.oauth.annotation.UserSeq;
 import mungsanbackend.daemaAuction.service.ProductService;
 import mungsanbackend.daemaAuction.service.S3UploaderService;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
+import mungsanbackend.daemaAuction.web.dto.response.ProductDetailsResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,4 +51,17 @@ public class ProductController {
             log.info(url);
         }
     }
+
+    @Operation(summary = "경매 물품 상세보기")
+    @GetMapping(value = "/product-details/{productId}")
+    public ResponseEntity<List<ProductDetailsResponse>> productDetails(@PathVariable("productId") Long productId) {
+        return ResponseEntity.ok(productService.findProductById(productId));
+    }
+
+/*    @Operation(summary = "경매 물품 상세보기")
+    @GetMapping(value = "/product-details/{productId}")
+    public ApiResponse productDetails(@PathVariable("productId") Long productId) {
+        List<ProductResponse> product = productService.findProductById(productId);
+        return ApiResponse.success("product", product);
+    }*/
 }

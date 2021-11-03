@@ -5,10 +5,10 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Getter
 @Setter
@@ -29,9 +29,6 @@ public class Product extends BaseTimeEntity {
 
     @NotNull
     private int auctionPrice; //현재가 & 시작가
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startAt; // 생성 시간
 
     private Long views = 0L; // 조회수
 

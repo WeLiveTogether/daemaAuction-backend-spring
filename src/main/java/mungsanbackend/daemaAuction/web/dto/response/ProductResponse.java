@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.Product;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
@@ -21,7 +21,7 @@ public class ProductResponse {
     private Long views;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date startAt;
+    private LocalDateTime createDate;
 
     public static ProductResponse of(Product product) {
         return ProductResponse.builder()
@@ -31,7 +31,7 @@ public class ProductResponse {
                 .immePrice(product.getImmePrice())
                 .auctionPrice(product.getAuctionPrice())
                 .views(product.getViews())
-                .startAt(product.getStartAt())
+                .createDate(product.getCreatedDate())
                 .build();
     }
 }
