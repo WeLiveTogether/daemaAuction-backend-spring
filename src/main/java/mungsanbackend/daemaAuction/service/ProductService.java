@@ -9,6 +9,7 @@ import mungsanbackend.daemaAuction.repository.CategoryRepository;
 import mungsanbackend.daemaAuction.repository.ProductRepository;
 import mungsanbackend.daemaAuction.repository.SubCategoryRepository;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
+import mungsanbackend.daemaAuction.web.dto.response.ProductDetailsResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductResponse;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,11 @@ public class ProductService {
         return ProductResponse.of(savedProduct);
     }
 
+    public List<ProductDetailsResponse> findProductById(Long productId) {
+        Optional<Product> productList = productRepository.findById(productId);
+        return productList.stream().map(ProductDetailsResponse::of).collect(Collectors.toList());
+    }
+
     private Category findCategoryByName(String name) {
         Optional<Category> category = categoryRepository.findByName(name);
         category.ifPresent(selectCategory -> {
@@ -58,6 +64,6 @@ public class ProductService {
         subCategory.ifPresent(selectSubCategory -> {
             System.out.println(selectSubCategory.getName());
         });
-        return subCategoryRepository.findByName(name).orElseThrow(() -> new RuntimeException("SubCategory를 칮을 수 없습니다."));
+        return subCategoryRepository.findByName(name).orElseThrow(() -> new RuntimeException("SubCategory를 찾을 수 없습니다."));
     }
 }
