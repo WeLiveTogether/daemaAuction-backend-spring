@@ -1,14 +1,13 @@
 package mungsanbackend.daemaAuction.service;
 
 import lombok.RequiredArgsConstructor;
-import mungsanbackend.daemaAuction.domain.Category;
-import mungsanbackend.daemaAuction.domain.Product;
-import mungsanbackend.daemaAuction.domain.SubCategory;
-import mungsanbackend.daemaAuction.domain.User;
+import mungsanbackend.daemaAuction.domain.*;
 import mungsanbackend.daemaAuction.repository.CategoryRepository;
+import mungsanbackend.daemaAuction.repository.ProductImageRepository;
 import mungsanbackend.daemaAuction.repository.ProductRepository;
 import mungsanbackend.daemaAuction.repository.SubCategoryRepository;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
+import mungsanbackend.daemaAuction.web.dto.response.ProductImageResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductResponse;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -25,6 +24,7 @@ public class ProductService {
     private final CategoryRepository categoryRepository;
     private final SubCategoryRepository subCategoryRepository;
     private final ProductRepository productRepository;
+    private final ProductImageRepository productImageRepository;
     private final UserService userService;
 
     public List<ProductResponse> getProductList() {
@@ -35,6 +35,10 @@ public class ProductService {
         return productRepository.findAll(Sort.by(Sort.Direction.DESC, "views")).stream().map(ProductResponse::of).collect(Collectors.toList());
     }
 
+    public Optional<Product> getProductById(Long id) {
+        return productRepository.findById(id);
+    }
+
     @Transactional
     public ProductResponse createProduct(Long userSeq, ProductRequest productRequest) {
         User user = userService.findUserBySeq(userSeq);
@@ -43,6 +47,14 @@ public class ProductService {
         Product product = new Product(productRequest.getTitle(), productRequest.getContent(), productRequest.getImmePrice(), productRequest.getAuctionPrice(), user, category, subCategory);
         Product savedProduct = productRepository.save(product);
         return ProductResponse.of(savedProduct);
+    }
+
+    @Transactional
+    public ProductImageResponse createImage(Long productId, String url) {
+        Optional<Product> product = getProductById(productId);
+        ProductImage productImage = new ProductImage(url, product);
+        ProductImage savedProductImage = productImageRepository.save(productImage);
+        return ProductImageResponse.of(savedProductImage);
     }
 
     private Category findCategoryByName(String name) {
