@@ -1,5 +1,6 @@
 package mungsanbackend.daemaAuction.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,10 +19,12 @@ public class SubCategory {
 
     private String name;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "subCategory")
     private List<Product> products = new ArrayList<>();
 }
