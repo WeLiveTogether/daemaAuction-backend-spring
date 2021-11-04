@@ -7,12 +7,14 @@ import mungsanbackend.daemaAuction.oauth.annotation.UserSeq;
 import mungsanbackend.daemaAuction.service.ProductService;
 import mungsanbackend.daemaAuction.service.S3UploaderService;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
+import mungsanbackend.daemaAuction.web.dto.response.ProductImageResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,16 +46,18 @@ public class ProductController {
 
     @Operation(summary = "사진 업로드")
     @PostMapping(value = "/product/image/upload")
-    public void upload(@RequestParam(value = "file") List<MultipartFile> multipartFile) throws IOException {
-
+    public ResponseEntity<List<ProductImageResponse>> upload(@RequestParam(value = "file") List<MultipartFile> multipartFile, @RequestParam(value = "productId") String productId) throws IOException {
+        Long id = Long.parseLong(productId);
+        List<ProductImageResponse> list = new ArrayList<>();
         for (int i = 0; i < multipartFile.size(); i++) {
             MultipartFile file = multipartFile.get(i);
             if (!file.isEmpty()) {
                 System.out.println(file.getName());
                 String url = s3UploaderService.upload(file, "static");
+                list.add(productService.createImage(id, url));
                 log.info(url);
             }
         }
-
+        return ResponseEntity.ok(list);
     }
 }
