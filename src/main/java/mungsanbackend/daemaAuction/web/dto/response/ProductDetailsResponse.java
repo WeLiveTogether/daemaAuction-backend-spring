@@ -40,6 +40,7 @@ public class ProductDetailsResponse {
     public static ProductDetailsResponse of(Product product) {
         return ProductDetailsResponse.builder()
                 .title(product.getTitle())
+                .content(product.getContent())
                 .immePrice(product.getImmePrice())
                 .auctionPrice(product.getAuctionPrice())
                 .views(product.getViews())
