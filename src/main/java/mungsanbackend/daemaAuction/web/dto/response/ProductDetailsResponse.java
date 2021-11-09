@@ -15,7 +15,6 @@ import java.util.List;
 public class ProductDetailsResponse {
 
     // product
-    private Long productId;
     private String title;
     private String content;
     private int immePrice; // 즉시 구매가
@@ -40,7 +39,6 @@ public class ProductDetailsResponse {
 
     public static ProductDetailsResponse of(Product product) {
         return ProductDetailsResponse.builder()
-                .productId(product.getId())
                 .title(product.getTitle())
                 .immePrice(product.getImmePrice())
                 .auctionPrice(product.getAuctionPrice())
