@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import mungsanbackend.daemaAuction.domain.Product;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 public class ProductResponse {
@@ -18,6 +20,7 @@ public class ProductResponse {
     private String content;
     private int immePrice;
     private int auctionPrice;
+    private String imageUrl;
     private Long views;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

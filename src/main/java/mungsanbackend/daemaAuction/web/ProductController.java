@@ -1,10 +1,10 @@
 package mungsanbackend.daemaAuction.web;
 
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mungsanbackend.daemaAuction.domain.Product;
 import mungsanbackend.daemaAuction.service.ProductService;
 import mungsanbackend.daemaAuction.service.S3UploaderService;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Slf4j
@@ -31,13 +32,25 @@ public class ProductController {
     @Operation(summary = "Product 최신순으로 정렬")
     @GetMapping("/products-latest")
     public ResponseEntity<List<ProductResponse>> productListByLatest() {
-        return ResponseEntity.ok(productService.getProductList());
+        List<ProductResponse> responses = productService.getProductList();
+        for (int i = 0; i < responses.size(); i++) {
+            Optional<Product> product = productService.getProductById(responses.get(i).getProductId());
+            String url = product.get().getProductImages().get(0).getUrl();
+            responses.get(i).setImageUrl(url);
+        }
+        return ResponseEntity.ok(responses);
     }
 
     @Operation(summary = "Product 인기순으로 정렬")
     @GetMapping("/products-popularity")
     public ResponseEntity<List<ProductResponse>> productListByPopularity() {
-        return ResponseEntity.ok(productService.getProductListByViews());
+        List<ProductResponse> responses = productService.getProductListByViews();
+        for (int i = 0; i < responses.size(); i++) {
+            Optional<Product> product = productService.getProductById(responses.get(i).getProductId());
+            String url = product.get().getProductImages().get(0).getUrl();
+            responses.get(i).setImageUrl(url);
+        }
+        return ResponseEntity.ok(responses);
     }
 
     @Operation(summary = "경매 글 작성", description = "성공 시 경매물품 Response 반환")
