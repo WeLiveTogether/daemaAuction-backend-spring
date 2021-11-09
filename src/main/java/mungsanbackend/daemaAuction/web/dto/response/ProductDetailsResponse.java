@@ -51,6 +51,7 @@ public class ProductDetailsResponse {
                 .profileImageUrl(product.getUser().getProfileImageUrl())
                 .categoryName(product.getCategory().getName())
                 .subCategoryName(product.getSubCategory().getName())
+                .createDate(product.getCreatedDate())
                 .build();
     }
 }
