@@ -1,6 +1,8 @@
 package mungsanbackend.daemaAuction.web;
 
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mungsanbackend.daemaAuction.service.ProductService;
@@ -38,15 +40,15 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProductListByViews());
     }
 
-    @Operation(summary = "경매 글 작성")
+    @Operation(summary = "경매 글 작성", description = "성공 시 경매물품 Response 반환")
     @PostMapping(value = "/product")
-    public ResponseEntity<ProductResponse> addProduct(@RequestBody ProductRequest productRequest) {
+    public ResponseEntity<ProductResponse> addProduct(@Parameter @RequestBody ProductRequest productRequest) {
         return ResponseEntity.ok(productService.createProduct(productRequest.getUserSeq(), productRequest));
     }
 
-    @Operation(summary = "사진 업로드")
+    @Operation(summary = "사진 업로드", description = "성공 시 업로드 된 사진들 List로 반환")
     @PostMapping(value = "/product/image/upload")
-    public ResponseEntity<List<ProductImageResponse>> upload(@RequestParam(value = "file") List<MultipartFile> multipartFile, @RequestParam(value = "productId") String productId) throws IOException {
+    public ResponseEntity<List<ProductImageResponse>> upload(@Parameter @RequestParam(value = "file") List<MultipartFile> multipartFile, @Parameter @RequestParam(value = "productId") String productId) throws IOException {
         Long id = Long.parseLong(productId);
         List<ProductImageResponse> list = new ArrayList<>();
         for (int i = 0; i < multipartFile.size(); i++) {
@@ -63,7 +65,7 @@ public class ProductController {
 
     @Operation(summary = "경매 물품 상세보기")
     @GetMapping(value = "/product-details/{productId}")
-    public ResponseEntity<List<ProductDetailsResponse>> productDetails(@PathVariable("productId") Long productId) {
+    public ResponseEntity<List<ProductDetailsResponse>> productDetails(@Parameter @PathVariable("productId") Long productId) {
         return ResponseEntity.ok(productService.findProductById(productId));
     }
 
