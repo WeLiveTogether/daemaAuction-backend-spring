@@ -7,8 +7,8 @@ import mungsanbackend.daemaAuction.repository.ProductImageRepository;
 import mungsanbackend.daemaAuction.repository.ProductRepository;
 import mungsanbackend.daemaAuction.repository.SubCategoryRepository;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
-import mungsanbackend.daemaAuction.web.dto.response.ProductImageResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductDetailsResponse;
+import mungsanbackend.daemaAuction.web.dto.response.ProductImageResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductResponse;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -56,6 +56,8 @@ public class ProductService {
         ProductImage productImage = new ProductImage(url, product);
         ProductImage savedProductImage = productImageRepository.save(productImage);
         return ProductImageResponse.of(savedProductImage);
+    }
+
     public List<ProductDetailsResponse> findProductById(Long productId) {
         Optional<Product> productList = productRepository.findById(productId);
         return productList.stream().map(ProductDetailsResponse::of).collect(Collectors.toList());
