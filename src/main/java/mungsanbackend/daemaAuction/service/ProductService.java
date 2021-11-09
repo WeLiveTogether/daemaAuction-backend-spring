@@ -41,7 +41,7 @@ public class ProductService {
         User user = userService.findUserBySeq(userSeq);
         Category category = findCategoryByName(productRequest.getCategory());
         SubCategory subCategory = findSubCategoryByName(productRequest.getSubCategory());
-        Product product = new Product(productRequest.getTitle(), productRequest.getContent(), productRequest.getImmePrice(), productRequest.getAuctionPrice(), user, category, subCategory);
+        Product product = new Product(productRequest.getTitle(), productRequest.getContent(), productRequest.getImmePrice(), productRequest.getAuctionPrice(), productRequest.getProductSaleStatus(), user, category, subCategory);
         Product savedProduct = productRepository.save(product);
         return ProductResponse.of(savedProduct);
     }
