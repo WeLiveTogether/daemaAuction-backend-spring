@@ -1,6 +1,7 @@
 package mungsanbackend.daemaAuction.web.dto.request;
 
 import lombok.Getter;
+import mungsanbackend.daemaAuction.domain.ProductSaleStatus;
 
 @Getter
 public class ProductRequest {
@@ -9,6 +10,7 @@ public class ProductRequest {
     private String content;
     private int immePrice;
     private int auctionPrice;
+    private ProductSaleStatus productSaleStatus;
     private String category;
     private String subCategory;
 }

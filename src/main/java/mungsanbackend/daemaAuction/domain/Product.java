@@ -11,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Getter
-@Setter
 public class Product extends BaseTimeEntity {
 
     @Id
@@ -32,6 +31,10 @@ public class Product extends BaseTimeEntity {
 
     private Long views = 0L; // 조회수
 
+    @Column(name = "SALE_STATUS", length = 20)
+    @Enumerated(EnumType.STRING)
+    private ProductSaleStatus saleStatus;
+
     @OneToMany(mappedBy = "product")
     private List<ProductImage> productImages = new ArrayList<>();
 
@@ -47,11 +50,19 @@ public class Product extends BaseTimeEntity {
     @JoinColumn(name = "subCategory_id")
     private SubCategory subCategory;
 
-    public Product(@NotNull String title, @NotNull String content, @NotNull int immePrice, @NotNull int auctionPrice, User user, Category category, SubCategory subCategory) {
+    public Product(@NotNull String title,
+                   @NotNull String content,
+                   @NotNull int immePrice,
+                   @NotNull int auctionPrice,
+                   ProductSaleStatus saleStatus,
+                   User user,
+                   Category category,
+                   SubCategory subCategory) {
         this.title = title;
         this.content = content;
         this.immePrice = immePrice;
         this.auctionPrice = auctionPrice;
+        this.saleStatus = saleStatus;
         this.user = user;
         this.category = category;
         this.subCategory = subCategory;
