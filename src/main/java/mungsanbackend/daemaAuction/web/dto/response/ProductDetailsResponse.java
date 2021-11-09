@@ -15,7 +15,6 @@ import java.util.List;
 public class ProductDetailsResponse {
 
     // product
-    private Long productId;
     private String title;
     private String content;
     private int immePrice; // 즉시 구매가
@@ -24,7 +23,6 @@ public class ProductDetailsResponse {
     private List<ProductImage> productImages;
 
     // product - User
-    private String userId;
     private String username;
     private String email;
     private String profileImageUrl;
@@ -40,18 +38,18 @@ public class ProductDetailsResponse {
 
     public static ProductDetailsResponse of(Product product) {
         return ProductDetailsResponse.builder()
-                .productId(product.getId())
                 .title(product.getTitle())
+                .content(product.getContent())
                 .immePrice(product.getImmePrice())
                 .auctionPrice(product.getAuctionPrice())
                 .views(product.getViews())
                 .productImages(product.getProductImages())
-                .userId(product.getUser().getUserId())
                 .username(product.getUser().getUsername())
                 .email(product.getUser().getEmail())
                 .profileImageUrl(product.getUser().getProfileImageUrl())
                 .categoryName(product.getCategory().getName())
                 .subCategoryName(product.getSubCategory().getName())
+                .createDate(product.getCreatedDate())
                 .build();
     }
 }
