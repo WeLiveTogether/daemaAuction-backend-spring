@@ -18,10 +18,8 @@ import java.time.LocalDateTime;
 public class MyPageResponse {
 
     // user
-    private String userId;
     private String userName;
     private String email;
-    private String emailVerifiedYn;
     private String profileImageUrl;
     private ProviderType providerType;
     private RoleType roleType;
