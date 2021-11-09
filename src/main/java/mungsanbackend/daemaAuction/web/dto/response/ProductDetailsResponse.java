@@ -23,7 +23,6 @@ public class ProductDetailsResponse {
     private List<ProductImage> productImages;
 
     // product - User
-    private String userId;
     private String username;
     private String email;
     private String profileImageUrl;
@@ -45,7 +44,6 @@ public class ProductDetailsResponse {
                 .auctionPrice(product.getAuctionPrice())
                 .views(product.getViews())
                 .productImages(product.getProductImages())
-                .userId(product.getUser().getUserId())
                 .username(product.getUser().getUsername())
                 .email(product.getUser().getEmail())
                 .profileImageUrl(product.getUser().getProfileImageUrl())
