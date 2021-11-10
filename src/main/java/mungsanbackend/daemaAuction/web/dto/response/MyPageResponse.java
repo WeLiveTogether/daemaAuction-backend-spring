@@ -20,8 +20,8 @@ public class MyPageResponse {
     private int auctionPrice;
     private Long views;
     private ProductSaleStatus saleStatus;
-    private Category category;
-    private SubCategory subCategory;
+    private String category;
+    private String subCategory;
 
     public static MyPageResponse of(Product product) {
         return MyPageResponse.builder()
@@ -32,8 +32,8 @@ public class MyPageResponse {
                 .auctionPrice(product.getAuctionPrice())
                 .views(product.getViews())
                 .saleStatus(product.getSaleStatus())
-                .category(product.getCategory())
-                .subCategory(product.getSubCategory())
+                .category(product.getCategory().getName())
+                .subCategory(product.getSubCategory().getName())
                 .build();
     }
 }
