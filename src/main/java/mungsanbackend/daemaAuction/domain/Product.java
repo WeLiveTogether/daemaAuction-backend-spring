@@ -50,6 +50,9 @@ public class Product extends BaseTimeEntity {
     @JoinColumn(name = "subCategory_id")
     private SubCategory subCategory;
 
+    // 구매자 id
+    private Long customerId;
+
     public Product(@NotNull String title,
                    @NotNull String content,
                    @NotNull int immePrice,
