@@ -35,8 +35,7 @@ public class ProductDetailsResponse {
     //product - SubCategory
     private String subCategoryName;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDateTime createDate;
+    private ProductSaleStatus saleStatus;
 
     public static ProductDetailsResponse of(Product product) {
         return ProductDetailsResponse.builder()
@@ -52,6 +51,7 @@ public class ProductDetailsResponse {
                 .profileImageUrl(product.getUser().getProfileImageUrl())
                 .categoryName(product.getCategory().getName())
                 .subCategoryName(product.getSubCategory().getName())
+                .saleStatus(product.getSaleStatus())
                 .build();
     }
 }
