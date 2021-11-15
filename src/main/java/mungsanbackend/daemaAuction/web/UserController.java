@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import mungsanbackend.daemaAuction.domain.User;
 import mungsanbackend.daemaAuction.service.UserService;
 import mungsanbackend.daemaAuction.web.dto.response.ApiResponse;
-import mungsanbackend.daemaAuction.web.dto.response.MyPageResponse;
+import mungsanbackend.daemaAuction.web.dto.response.UserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +23,11 @@ public class UserController {
     @Operation(summary = "유저 정보 받아오기")
     @GetMapping("/users")
     public ApiResponse getUser() {
-        User user = userService.getUserInfo();
+        User userInfo = userService.getUserInfo();
+        UserResponse userResponse = UserResponse.of(userInfo);
 
-        return ApiResponse.success("user", user);
-        }
+        return ApiResponse.success("user", userResponse);
+    }
 
     @Operation(summary = "마이페이지")
     @GetMapping("/mypage")
