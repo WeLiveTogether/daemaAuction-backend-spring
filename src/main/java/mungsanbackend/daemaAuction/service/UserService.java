@@ -2,6 +2,7 @@ package mungsanbackend.daemaAuction.service;
 
 import lombok.RequiredArgsConstructor;
 import mungsanbackend.daemaAuction.domain.User;
+import mungsanbackend.daemaAuction.exception.UserNotFoundException;
 import mungsanbackend.daemaAuction.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,6 @@ public class UserService {
     }
 
     public User findUserBySeq(Long seq) {
-        return userRepository.findUserByUserSeq(seq).orElseThrow(() -> new RuntimeException("User를 찾을 수 없습니다."));
+        return userRepository.findUserByUserSeq(seq).orElseThrow(() -> new UserNotFoundException());
     }
 }

@@ -2,6 +2,8 @@ package mungsanbackend.daemaAuction.service;
 
 import lombok.RequiredArgsConstructor;
 import mungsanbackend.daemaAuction.domain.*;
+import mungsanbackend.daemaAuction.exception.CategoryNotFoundException;
+import mungsanbackend.daemaAuction.exception.SubCategoryNotFoundException;
 import mungsanbackend.daemaAuction.repository.CategoryRepository;
 import mungsanbackend.daemaAuction.repository.ProductImageRepository;
 import mungsanbackend.daemaAuction.repository.ProductRepository;
@@ -68,7 +70,7 @@ public class ProductService {
         category.ifPresent(selectCategory -> {
             System.out.println(selectCategory.getName());
         });
-        return categoryRepository.findByName(name).orElseThrow(() -> new RuntimeException("Category를 찾을 수 없습니다."));
+        return categoryRepository.findByName(name).orElseThrow(() -> new CategoryNotFoundException());
     }
 
     private SubCategory findSubCategoryByName(String name) {
@@ -76,6 +78,6 @@ public class ProductService {
         subCategory.ifPresent(selectSubCategory -> {
             System.out.println(selectSubCategory.getName());
         });
-        return subCategoryRepository.findByName(name).orElseThrow(() -> new RuntimeException("SubCategory를 찾을 수 없습니다."));
+        return subCategoryRepository.findByName(name).orElseThrow(() -> new SubCategoryNotFoundException());
     }
 }
