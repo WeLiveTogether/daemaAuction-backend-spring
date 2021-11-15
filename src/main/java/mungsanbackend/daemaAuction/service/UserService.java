@@ -5,13 +5,16 @@ import mungsanbackend.daemaAuction.domain.Product;
 import mungsanbackend.daemaAuction.domain.User;
 import mungsanbackend.daemaAuction.repository.ProductRepository;
 import mungsanbackend.daemaAuction.repository.UserRepository;
-import mungsanbackend.daemaAuction.web.dto.response.MyPageResponse;
+import mungsanbackend.daemaAuction.web.dto.response.UserResponse;
+import mungsanbackend.daemaAuction.web.dto.response.mypage.MyPageResponse;
+import mungsanbackend.daemaAuction.web.dto.response.mypage.MyProductResponse;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +33,8 @@ public class UserService {
 
     public User getUserInfo() {
         org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return getUser(principal.getUsername());
+        User user = getUser(principal.getUsername());
+        return new User(user.getUserId(), user.getUsername(), user.getEmail(), user.getProfileImageUrl(), user.getProviderType(), user.getRoleType());
     }
 
     public List<MyPageResponse> myPage() {
