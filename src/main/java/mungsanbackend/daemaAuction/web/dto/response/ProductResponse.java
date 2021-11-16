@@ -22,6 +22,9 @@ public class ProductResponse {
     private int auctionPrice;
     private String imageUrl;
     private Long views;
+    private String userName;
+    private String category;
+    private String subCategory;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime createDate;
@@ -35,6 +38,9 @@ public class ProductResponse {
                 .auctionPrice(product.getAuctionPrice())
                 .views(product.getViews())
                 .createDate(product.getCreatedDate())
+                .userName(product.getUser().getUsername())
+                .category(product.getCategory().getName())
+                .subCategory(product.getSubCategory().getName())
                 .build();
     }
 }
