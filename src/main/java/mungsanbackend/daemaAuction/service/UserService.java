@@ -5,16 +5,13 @@ import mungsanbackend.daemaAuction.domain.Product;
 import mungsanbackend.daemaAuction.domain.User;
 import mungsanbackend.daemaAuction.repository.ProductRepository;
 import mungsanbackend.daemaAuction.repository.UserRepository;
-import mungsanbackend.daemaAuction.web.dto.response.UserResponse;
-import mungsanbackend.daemaAuction.web.dto.response.mypage.MyPageResponse;
 import mungsanbackend.daemaAuction.web.dto.response.mypage.MyProductResponse;
+import mungsanbackend.daemaAuction.web.dto.response.mypage.MyPageResponse;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -37,9 +34,19 @@ public class UserService {
         return new User(user.getUserId(), user.getUsername(), user.getEmail(), user.getProfileImageUrl(), user.getProviderType(), user.getRoleType());
     }
 
-    public List<MyPageResponse> myPage() {
-        User user = getUserInfo();
-        Optional<Product> product = productRepository.findProductByUser(user);
-        return product.stream().map(MyPageResponse::of).collect(Collectors.toList());
+    public MyPageResponse myPage() {
+        User userInfo = getUserInfo();
+
+        User user = userRepository.findByUserId(userInfo.getUserId());
+
+        List<Product> product = productRepository.findProductByUser(user);
+        List<MyProductResponse> productResponse = product.stream().map(MyProductResponse::of).collect(Collectors.toList());
+
+        return MyPageResponse.builder()
+                .userName(user.getUsername())
+                .email(user.getEmail())
+                .profileImageUrl(user.getProfileImageUrl())
+                .productResponseList(productResponse)
+                .build();
     }
 }
