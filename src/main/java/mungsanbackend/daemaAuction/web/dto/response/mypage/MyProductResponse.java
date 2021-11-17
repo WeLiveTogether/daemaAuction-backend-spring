@@ -1,19 +1,15 @@
-package mungsanbackend.daemaAuction.web.dto.response;
+package mungsanbackend.daemaAuction.web.dto.response.mypage;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import mungsanbackend.daemaAuction.domain.*;
+import mungsanbackend.daemaAuction.domain.Product;
+import mungsanbackend.daemaAuction.domain.ProductSaleStatus;
 
 @Getter
 @Builder
 @AllArgsConstructor
-public class MyPageResponse {
-
-    // user
-    private String userName;
-    private String email;
-    private String profileImageUrl;
+public class MyProductResponse {
 
     // product 자신이 등록한 상품, 거래완료된 상품
     private String title;
@@ -23,11 +19,8 @@ public class MyPageResponse {
     private String category;
     private String subCategory;
 
-    public static MyPageResponse of(Product product) {
-        return MyPageResponse.builder()
-                .userName(product.getUser().getUsername())
-                .email(product.getUser().getEmail())
-                .profileImageUrl(product.getUser().getProfileImageUrl())
+    public static MyProductResponse of(Product product) {
+        return MyProductResponse.builder()
                 .title(product.getTitle())
                 .auctionPrice(product.getAuctionPrice())
                 .views(product.getViews())
