@@ -1,14 +1,10 @@
 package mungsanbackend.daemaAuction.web.dto.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.User;
 import mungsanbackend.daemaAuction.oauth.entity.ProviderType;
 import mungsanbackend.daemaAuction.oauth.entity.RoleType;
 
-@Getter
-@Builder
 @AllArgsConstructor
 public class UserResponse {
 
