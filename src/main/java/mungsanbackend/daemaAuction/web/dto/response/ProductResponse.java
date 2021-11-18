@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import mungsanbackend.daemaAuction.domain.Product;
+import mungsanbackend.daemaAuction.domain.ProductSaleStatus;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +21,7 @@ public class ProductResponse {
     private String content;
     private int immePrice;
     private int auctionPrice;
-    private String imageUrl;
+    private ProductSaleStatus saleStatus;
     private Long views;
     private String userName;
     private String category;
@@ -36,6 +37,7 @@ public class ProductResponse {
                 .content(product.getContent())
                 .immePrice(product.getImmePrice())
                 .auctionPrice(product.getAuctionPrice())
+                .saleStatus(product.getSaleStatus())
                 .views(product.getViews())
                 .createDate(product.getCreatedDate())
                 .userName(product.getUser().getUsername())
