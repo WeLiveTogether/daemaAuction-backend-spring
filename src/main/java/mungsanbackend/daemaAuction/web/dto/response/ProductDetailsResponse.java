@@ -35,6 +35,8 @@ public class ProductDetailsResponse {
 
     private ProductSaleStatus saleStatus;
 
+    private LocalDateTime endDate;
+
     public static ProductDetailsResponse of(Product product) {
         return ProductDetailsResponse.builder()
                 .title(product.getTitle())
@@ -49,6 +51,7 @@ public class ProductDetailsResponse {
                 .categoryName(product.getCategory().getName())
                 .subCategoryName(product.getSubCategory().getName())
                 .saleStatus(product.getSaleStatus())
+                .endDate(product.getCreateDate().plusHours(24))
                 .build();
     }
 }

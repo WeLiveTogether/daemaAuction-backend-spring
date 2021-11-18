@@ -21,14 +21,15 @@ public class ProductResponse {
     private String content;
     private int immePrice;
     private int auctionPrice;
+    private String imageUrl;
     private ProductSaleStatus saleStatus;
     private Long views;
     private String userName;
     private String category;
     private String subCategory;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime createDate;
+    private LocalDateTime endDate;
 
     public static ProductResponse of(Product product) {
         return ProductResponse.builder()
@@ -39,7 +40,8 @@ public class ProductResponse {
                 .auctionPrice(product.getAuctionPrice())
                 .saleStatus(product.getSaleStatus())
                 .views(product.getViews())
-                .createDate(product.getCreatedDate())
+                .createDate(product.getCreateDate())
+                .endDate(product.getCreateDate().plusHours(24))
                 .userName(product.getUser().getUsername())
                 .category(product.getCategory().getName())
                 .subCategory(product.getSubCategory().getName())
