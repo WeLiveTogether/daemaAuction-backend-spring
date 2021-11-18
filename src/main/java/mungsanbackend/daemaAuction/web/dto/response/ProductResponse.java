@@ -1,6 +1,5 @@
 package mungsanbackend.daemaAuction.web.dto.response;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,6 +37,7 @@ public class ProductResponse {
                 .content(product.getContent())
                 .immePrice(product.getImmePrice())
                 .auctionPrice(product.getAuctionPrice())
+                .imageUrl(product.getImageUrl())
                 .saleStatus(product.getSaleStatus())
                 .views(product.getViews())
                 .createDate(product.getCreateDate())
