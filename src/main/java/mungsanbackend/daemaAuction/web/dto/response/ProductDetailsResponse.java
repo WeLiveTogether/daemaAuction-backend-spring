@@ -7,6 +7,7 @@ import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -36,6 +37,8 @@ public class ProductDetailsResponse {
     private ProductSaleStatus saleStatus;
 
     private LocalDateTime endDate;
+
+    private String imageUrl;
 
     public static ProductDetailsResponse of(Product product) {
         return ProductDetailsResponse.builder()
