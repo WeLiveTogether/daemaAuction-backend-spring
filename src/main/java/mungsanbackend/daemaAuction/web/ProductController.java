@@ -1,8 +1,10 @@
 package mungsanbackend.daemaAuction.web;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import mungsanbackend.daemaAuction.domain.Product;
 import mungsanbackend.daemaAuction.service.ProductService;
 import mungsanbackend.daemaAuction.service.S3UploaderService;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Slf4j
@@ -29,24 +32,36 @@ public class ProductController {
     @Operation(summary = "Product 최신순으로 정렬")
     @GetMapping("/products-latest")
     public ResponseEntity<List<ProductResponse>> productListByLatest() {
-        return ResponseEntity.ok(productService.getProductList());
+        List<ProductResponse> responses = productService.getProductList();
+        for (int i = 0; i < responses.size(); i++) {
+            Optional<Product> product = productService.getProductById(responses.get(i).getProductId());
+            String url = product.get().getProductImages().get(0).getUrl();
+            responses.get(i).setImageUrl(url);
+        }
+        return ResponseEntity.ok(responses);
     }
 
     @Operation(summary = "Product 인기순으로 정렬")
     @GetMapping("/products-popularity")
     public ResponseEntity<List<ProductResponse>> productListByPopularity() {
-        return ResponseEntity.ok(productService.getProductListByViews());
+        List<ProductResponse> responses = productService.getProductListByViews();
+        for (int i = 0; i < responses.size(); i++) {
+            Optional<Product> product = productService.getProductById(responses.get(i).getProductId());
+            String url = product.get().getProductImages().get(0).getUrl();
+            responses.get(i).setImageUrl(url);
+        }
+        return ResponseEntity.ok(responses);
     }
 
-    @Operation(summary = "경매 글 작성")
+    @Operation(summary = "경매 글 작성", description = "성공 시 경매물품 Response 반환")
     @PostMapping(value = "/product")
-    public ResponseEntity<ProductResponse> addProduct(@RequestBody ProductRequest productRequest) {
+    public ResponseEntity<ProductResponse> addProduct(@Parameter @RequestBody ProductRequest productRequest) {
         return ResponseEntity.ok(productService.createProduct(productRequest.getUserSeq(), productRequest));
     }
 
-    @Operation(summary = "사진 업로드")
+    @Operation(summary = "사진 업로드", description = "성공 시 업로드 된 사진들 List로 반환")
     @PostMapping(value = "/product/image/upload")
-    public ResponseEntity<List<ProductImageResponse>> upload(@RequestParam(value = "file") List<MultipartFile> multipartFile, @RequestParam(value = "productId") String productId) throws IOException {
+    public ResponseEntity<List<ProductImageResponse>> upload(@Parameter @RequestParam(value = "file") List<MultipartFile> multipartFile, @Parameter @RequestParam(value = "productId") String productId) throws IOException {
         Long id = Long.parseLong(productId);
         List<ProductImageResponse> list = new ArrayList<>();
         for (int i = 0; i < multipartFile.size(); i++) {
@@ -63,7 +78,7 @@ public class ProductController {
 
     @Operation(summary = "경매 물품 상세보기")
     @GetMapping(value = "/product-details/{productId}")
-    public ResponseEntity<List<ProductDetailsResponse>> productDetails(@PathVariable("productId") Long productId) {
+    public ResponseEntity<List<ProductDetailsResponse>> productDetails(@Parameter @PathVariable("productId") Long productId) {
         return ResponseEntity.ok(productService.findProductById(productId));
     }
 
