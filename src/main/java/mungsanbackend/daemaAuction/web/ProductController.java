@@ -63,7 +63,9 @@ public class ProductController {
     @PostMapping(value = "/product/image/upload")
     public ResponseEntity<List<ProductImageResponse>> upload(@Parameter @RequestParam(value = "file") List<MultipartFile> multipartFile, @Parameter @RequestParam(value = "productId") String productId) throws IOException {
         Long id = Long.parseLong(productId);
+
         List<ProductImageResponse> list = new ArrayList<>();
+        Optional<Product> product = productService.getProductById(id);
         for (int i = 0; i < multipartFile.size(); i++) {
             MultipartFile file = multipartFile.get(i);
             if (!file.isEmpty()) {
@@ -73,6 +75,7 @@ public class ProductController {
                 log.info(url);
             }
         }
+        product.get().setImageUrl(list.get(0).getUrl());
         return ResponseEntity.ok(list);
     }
 

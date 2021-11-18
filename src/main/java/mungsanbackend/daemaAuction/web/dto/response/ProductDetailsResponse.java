@@ -7,6 +7,7 @@ import lombok.Getter;
 import mungsanbackend.daemaAuction.domain.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -35,6 +36,10 @@ public class ProductDetailsResponse {
 
     private ProductSaleStatus saleStatus;
 
+    private LocalDateTime endDate;
+
+    private String imageUrl;
+
     public static ProductDetailsResponse of(Product product) {
         return ProductDetailsResponse.builder()
                 .title(product.getTitle())
@@ -49,6 +54,7 @@ public class ProductDetailsResponse {
                 .categoryName(product.getCategory().getName())
                 .subCategoryName(product.getSubCategory().getName())
                 .saleStatus(product.getSaleStatus())
+                .endDate(product.getCreateDate().plusHours(24))
                 .build();
     }
 }
