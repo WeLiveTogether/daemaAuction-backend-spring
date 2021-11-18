@@ -1,10 +1,13 @@
 package mungsanbackend.daemaAuction.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +35,9 @@ public class Product extends BaseTimeEntity {
 
     private Long views = 0L; // 조회수
 
+    @Setter
+    private String imageUrl;
+
     @Column(name = "SALE_STATUS", length = 20)
     @Enumerated(EnumType.STRING)
     private ProductSaleStatus saleStatus;
@@ -53,6 +59,13 @@ public class Product extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subCategory_id")
     private SubCategory subCategory;
+
+    @CreatedDate
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createDate; // 시작시각
+
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+//    private LocalDateTime endDate ; // 종료시각
 
     // 구매자 id
     private Long customerId;
