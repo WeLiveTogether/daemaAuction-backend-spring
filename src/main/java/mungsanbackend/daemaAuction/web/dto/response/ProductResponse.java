@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import mungsanbackend.daemaAuction.domain.Product;
 import mungsanbackend.daemaAuction.domain.ProductSaleStatus;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 public class ProductResponse {
@@ -21,6 +23,9 @@ public class ProductResponse {
     private int auctionPrice;
     private ProductSaleStatus saleStatus;
     private Long views;
+    private String userName;
+    private String category;
+    private String subCategory;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime createDate;
@@ -35,6 +40,9 @@ public class ProductResponse {
                 .saleStatus(product.getSaleStatus())
                 .views(product.getViews())
                 .createDate(product.getCreatedDate())
+                .userName(product.getUser().getUsername())
+                .category(product.getCategory().getName())
+                .subCategory(product.getSubCategory().getName())
                 .build();
     }
 }

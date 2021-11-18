@@ -1,15 +1,16 @@
 package mungsanbackend.daemaAuction.service;
 
 import lombok.RequiredArgsConstructor;
-import mungsanbackend.daemaAuction.domain.Category;
-import mungsanbackend.daemaAuction.domain.Product;
-import mungsanbackend.daemaAuction.domain.SubCategory;
-import mungsanbackend.daemaAuction.domain.User;
+import mungsanbackend.daemaAuction.domain.*;
+import mungsanbackend.daemaAuction.exception.CategoryNotFoundException;
+import mungsanbackend.daemaAuction.exception.SubCategoryNotFoundException;
 import mungsanbackend.daemaAuction.repository.CategoryRepository;
+import mungsanbackend.daemaAuction.repository.ProductImageRepository;
 import mungsanbackend.daemaAuction.repository.ProductRepository;
 import mungsanbackend.daemaAuction.repository.SubCategoryRepository;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
 import mungsanbackend.daemaAuction.web.dto.response.ProductDetailsResponse;
+import mungsanbackend.daemaAuction.web.dto.response.ProductImageResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductResponse;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class ProductService {
     private final CategoryRepository categoryRepository;
     private final SubCategoryRepository subCategoryRepository;
     private final ProductRepository productRepository;
+    private final ProductImageRepository productImageRepository;
     private final UserService userService;
 
     public List<ProductResponse> getProductList() {
@@ -34,6 +36,10 @@ public class ProductService {
 
     public List<ProductResponse> getProductListByViews() {
         return productRepository.findAll(Sort.by(Sort.Direction.DESC, "views")).stream().map(ProductResponse::of).collect(Collectors.toList());
+    }
+
+    public Optional<Product> getProductById(Long id) {
+        return productRepository.findById(id);
     }
 
     @Transactional
@@ -46,6 +52,14 @@ public class ProductService {
         return ProductResponse.of(savedProduct);
     }
 
+    @Transactional
+    public ProductImageResponse createImage(Long productId, String url) {
+        Optional<Product> product = getProductById(productId);
+        ProductImage productImage = new ProductImage(url, product);
+        ProductImage savedProductImage = productImageRepository.save(productImage);
+        return ProductImageResponse.of(savedProductImage);
+    }
+
     public List<ProductDetailsResponse> findProductById(Long productId) {
         Optional<Product> productList = productRepository.findById(productId);
         return productList.stream().map(ProductDetailsResponse::of).collect(Collectors.toList());
@@ -56,7 +70,7 @@ public class ProductService {
         category.ifPresent(selectCategory -> {
             System.out.println(selectCategory.getName());
         });
-        return categoryRepository.findByName(name).orElseThrow(() -> new RuntimeException("Category를 찾을 수 없습니다."));
+        return categoryRepository.findByName(name).orElseThrow(() -> new CategoryNotFoundException());
     }
 
     private SubCategory findSubCategoryByName(String name) {
@@ -64,6 +78,6 @@ public class ProductService {
         subCategory.ifPresent(selectSubCategory -> {
             System.out.println(selectSubCategory.getName());
         });
-        return subCategoryRepository.findByName(name).orElseThrow(() -> new RuntimeException("SubCategory를 찾을 수 없습니다."));
+        return subCategoryRepository.findByName(name).orElseThrow(() -> new SubCategoryNotFoundException());
     }
 }

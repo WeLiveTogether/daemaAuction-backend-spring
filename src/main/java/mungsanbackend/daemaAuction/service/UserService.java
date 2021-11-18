@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import mungsanbackend.daemaAuction.domain.Product;
 import mungsanbackend.daemaAuction.domain.User;
 import mungsanbackend.daemaAuction.repository.ProductRepository;
+import mungsanbackend.daemaAuction.exception.UserNotFoundException;
 import mungsanbackend.daemaAuction.repository.UserRepository;
 import mungsanbackend.daemaAuction.web.dto.response.mypage.MyProductResponse;
 import mungsanbackend.daemaAuction.web.dto.response.mypage.MyPageResponse;
@@ -25,7 +26,7 @@ public class UserService {
     }
 
     public User findUserBySeq(Long seq) {
-        return userRepository.findUserByUserSeq(seq).orElseThrow(() -> new RuntimeException("User를 찾을 수 없습니다."));
+        return userRepository.findUserByUserSeq(seq).orElseThrow(() -> new UserNotFoundException());
     }
 
     public User getUserInfo() {
