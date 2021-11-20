@@ -64,6 +64,7 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "user")
     private List<Product> products = new ArrayList<>();
 
+    @JsonIgnore
     @Builder.Default
     @OneToMany(mappedBy = "user")
     private List<JoinRoom> joinRooms= new ArrayList<>();
