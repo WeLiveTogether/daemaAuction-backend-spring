@@ -22,7 +22,7 @@ public class ProductRequest {
     private int auctionPrice;
 
     // 물품 판매 상태 enum
-    private ProductSaleStatus productSaleStatus;
+    private ProductSaleStatus saleStatus;
 
     @Schema(description = "메인카테고리 이름", example = "도서")
     private String category;
