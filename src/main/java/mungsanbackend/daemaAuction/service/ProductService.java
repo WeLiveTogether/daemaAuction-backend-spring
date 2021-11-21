@@ -87,6 +87,8 @@ public class ProductService {
         User userInfo = userService.getUserInfo();
 
         Product product = productRepository.findProductById(productId);
+        int immePrice = product.getImmePrice();
+        product.setAuctionPrice(immePrice);
         productRepository.updateStatus(productId);
         return ProductBuyResponse.builder()
                 .productId(product.getId())
