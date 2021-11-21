@@ -102,11 +102,13 @@ public class ProductService {
                 .build();
     }
 
-    public ProductDetailsResponse attendAuction(Long productId, int price) {
+    @Transactional
+    public ProductDetailsResponse attendAuction(Long productId, int price) throws Exception {
         Product product = productRepository.findProductById(productId);
         int auctionPrice = product.getAuctionPrice();
 
         if(price > auctionPrice) {
+            productRepository.updatePrice(productId, price);
             product.setAuctionPrice(price);
             return ProductDetailsResponse.of(product);
         }
