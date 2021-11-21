@@ -101,4 +101,16 @@ public class ProductService {
                 .consumerId(userInfo.getUserId())
                 .build();
     }
+
+    public ProductDetailsResponse attendAuction(Long productId, int price) {
+        Product product = productRepository.findProductById(productId);
+        int auctionPrice = product.getAuctionPrice();
+
+        if(price > auctionPrice) {
+            product.setAuctionPrice(price);
+            return ProductDetailsResponse.of(product);
+        }
+
+        return null;
+    }
 }
