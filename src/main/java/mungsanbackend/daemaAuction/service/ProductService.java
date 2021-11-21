@@ -87,6 +87,8 @@ public class ProductService {
         User userInfo = userService.getUserInfo();
 
         Product product = productRepository.findProductById(productId);
+        int immePrice = product.getImmePrice();
+        product.setAuctionPrice(immePrice);
         productRepository.updateStatus(productId);
         return ProductBuyResponse.builder()
                 .productId(product.getId())
@@ -98,5 +100,17 @@ public class ProductService {
                 .subCategory(product.getSubCategory().getName())
                 .consumerId(userInfo.getUserId())
                 .build();
+    }
+
+    public ProductDetailsResponse attendAuction(Long productId, int price) {
+        Product product = productRepository.findProductById(productId);
+        int auctionPrice = product.getAuctionPrice();
+
+        if(price > auctionPrice) {
+            product.setAuctionPrice(price);
+            return ProductDetailsResponse.of(product);
+        }
+
+        return null;
     }
 }

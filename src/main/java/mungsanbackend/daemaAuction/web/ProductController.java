@@ -16,10 +16,8 @@ import mungsanbackend.daemaAuction.web.dto.response.ProductImageResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import springfox.documentation.spi.service.contexts.SecurityContext;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -96,8 +94,13 @@ public class ProductController {
 
     @Operation(summary = "물품 구매")
     @PostMapping(value = "/buy-product/{productId}")
-    public ResponseEntity<ProductBuyResponse> buyProduct(@Parameter @PathVariable("productId") String productId) throws Exception {
-        Long id = Long.parseLong(productId);
-        return ResponseEntity.ok(productService.buyProduct(id));
+    public ResponseEntity<ProductBuyResponse> buyProduct(@Parameter @PathVariable("productId") Long productId) throws Exception {
+        return ResponseEntity.ok(productService.buyProduct(productId));
+    }
+
+    @Operation(summary = "경매 참여")
+    @PostMapping(value = "/attend-auction/{productId}")
+    public ResponseEntity<ProductDetailsResponse> attendAuction(@Parameter @PathVariable("productId") Long productId, @RequestParam int price) {
+        return ResponseEntity.ok(productService.attendAuction(productId, price));
     }
  }
