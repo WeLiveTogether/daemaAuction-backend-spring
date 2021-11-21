@@ -5,16 +5,21 @@ import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import mungsanbackend.daemaAuction.domain.Product;
+import mungsanbackend.daemaAuction.domain.User;
 import mungsanbackend.daemaAuction.service.ProductService;
 import mungsanbackend.daemaAuction.service.S3UploaderService;
+import mungsanbackend.daemaAuction.service.UserService;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
 import mungsanbackend.daemaAuction.web.dto.response.ProductBuyResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductDetailsResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductImageResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +33,7 @@ import java.util.Optional;
 public class ProductController {
 
     private final ProductService productService;
+    private final UserService userService;
     private final S3UploaderService s3UploaderService;
 
     @Operation(summary = "Product 최신순으로 정렬")
@@ -57,7 +63,9 @@ public class ProductController {
     @Operation(summary = "경매 글 작성", description = "성공 시 경매물품 Response 반환")
     @PostMapping(value = "/product")
     public ResponseEntity<ProductResponse> addProduct(@Parameter @RequestBody ProductRequest productRequest) {
-        return ResponseEntity.ok(productService.createProduct(productRequest.getUserSeq(), productRequest));
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.getUser(principal.getUsername());
+        return ResponseEntity.ok(productService.createProduct(user.getUserSeq(), productRequest));
     }
 
     @Operation(summary = "사진 업로드", description = "성공 시 업로드 된 사진들 List로 반환")
