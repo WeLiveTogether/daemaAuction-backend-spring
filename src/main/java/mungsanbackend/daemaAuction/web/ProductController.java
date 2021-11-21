@@ -100,7 +100,7 @@ public class ProductController {
 
     @Operation(summary = "경매 참여")
     @PostMapping(value = "/attend-auction/{productId}")
-    public ResponseEntity<ProductDetailsResponse> attendAuction(@Parameter @PathVariable("productId") Long productId, @RequestParam int price) {
+    public ResponseEntity<ProductDetailsResponse> attendAuction(@Parameter @PathVariable("productId") Long productId, @RequestParam int price) throws Exception {
         return ResponseEntity.ok(productService.attendAuction(productId, price));
     }
  }
