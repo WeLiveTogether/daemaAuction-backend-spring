@@ -17,6 +17,7 @@ public class CookieUtil {
             for (Cookie cookie : cookies) {
                 if (name.equals(cookie.getName())) {
                     cookie.setPath("/");
+                    cookie.setSecure(true);
                     return Optional.of(cookie);
                 }
             }
@@ -29,8 +30,7 @@ public class CookieUtil {
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setMaxAge(maxAge);
-        response.addHeader("Set-Cookie", "SameSiteTest; Secure; SameSite=None");
-
+        cookie.setSecure(true);
         response.addCookie(cookie);
     }
 
@@ -43,7 +43,7 @@ public class CookieUtil {
                     cookie.setValue("");
                     cookie.setPath("/");
                     cookie.setMaxAge(0);
-                    response.addHeader("Set-Cookie", "SameSiteTest; Secure; SameSite=None");
+                    cookie.setSecure(true);
                     response.addCookie(cookie);
                 }
             }
