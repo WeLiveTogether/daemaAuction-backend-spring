@@ -84,11 +84,4 @@ public class ProductController {
     public ResponseEntity<List<ProductDetailsResponse>> productDetails(@Parameter @PathVariable("productId") Long productId) {
         return ResponseEntity.ok(productService.findProductById(productId));
     }
-
-/*    @Operation(summary = "경매 물품 상세보기")
-    @GetMapping(value = "/product-details/{productId}")
-    public ApiResponse productDetails(@PathVariable("productId") Long productId) {
-        List<ProductResponse> product = productService.findProductById(productId);
-        return ApiResponse.success("product", product);
-    }*/
 }
