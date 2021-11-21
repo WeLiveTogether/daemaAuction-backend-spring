@@ -9,6 +9,7 @@ import mungsanbackend.daemaAuction.repository.ProductImageRepository;
 import mungsanbackend.daemaAuction.repository.ProductRepository;
 import mungsanbackend.daemaAuction.repository.SubCategoryRepository;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
+import mungsanbackend.daemaAuction.web.dto.response.ProductBuyResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductDetailsResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductImageResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductResponse;
@@ -79,5 +80,23 @@ public class ProductService {
             System.out.println(selectSubCategory.getName());
         });
         return subCategoryRepository.findByName(name).orElseThrow(SubCategoryNotFoundException::new);
+    }
+
+    @Transactional
+    public ProductBuyResponse buyProduct(Long productId) throws Exception {
+        User userInfo = userService.getUserInfo();
+
+        Product product = productRepository.findProductById(productId);
+        productRepository.updateStatus(productId);
+        return ProductBuyResponse.builder()
+                .productId(product.getId())
+                .title(product.getTitle())
+                .immePrice(product.getImmePrice())
+                .auctionPrice(product.getAuctionPrice())
+                .saleStatus(ProductSaleStatus.SOLD_OUT)
+                .category(product.getCategory().getName())
+                .subCategory(product.getSubCategory().getName())
+                .consumerId(userInfo.getUserId())
+                .build();
     }
 }

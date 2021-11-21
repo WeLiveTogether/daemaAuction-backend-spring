@@ -10,6 +10,7 @@ import mungsanbackend.daemaAuction.service.ProductService;
 import mungsanbackend.daemaAuction.service.S3UploaderService;
 import mungsanbackend.daemaAuction.service.UserService;
 import mungsanbackend.daemaAuction.web.dto.request.ProductRequest;
+import mungsanbackend.daemaAuction.web.dto.response.ProductBuyResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductDetailsResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductImageResponse;
 import mungsanbackend.daemaAuction.web.dto.response.ProductResponse;
@@ -92,4 +93,11 @@ public class ProductController {
     public ResponseEntity<List<ProductDetailsResponse>> productDetails(@Parameter @PathVariable("productId") Long productId) {
         return ResponseEntity.ok(productService.findProductById(productId));
     }
-}
+
+    @Operation(summary = "물품 구매")
+    @PostMapping(value = "/buy-product/{productId}")
+    public ResponseEntity<ProductBuyResponse> buyProduct(@Parameter @PathVariable("productId") String productId) throws Exception {
+        Long id = Long.parseLong(productId);
+        return ResponseEntity.ok(productService.buyProduct(id));
+    }
+ }
