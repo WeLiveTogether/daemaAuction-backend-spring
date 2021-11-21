@@ -6,9 +6,6 @@ import mungsanbackend.daemaAuction.domain.ProductSaleStatus;
 
 @Getter
 public class ProductRequest {
-    @Schema(description = "유저아이디", example = "1")
-    private Long userSeq;
-
     @Schema(description = "물품명", example = "TV")
     private String title;
 
