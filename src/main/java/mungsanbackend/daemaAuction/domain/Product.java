@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Getter
+@Setter
 public class Product extends BaseTimeEntity {
 
     @Id
@@ -68,7 +69,7 @@ public class Product extends BaseTimeEntity {
 //    private LocalDateTime endDate ; // 종료시각
 
     // 구매자 id
-    private Long customerId;
+    private String consumerId;
 
     public Product(@NotNull String title,
                    @NotNull String content,
