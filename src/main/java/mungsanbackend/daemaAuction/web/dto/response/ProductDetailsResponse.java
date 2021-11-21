@@ -1,13 +1,13 @@
 package mungsanbackend.daemaAuction.web.dto.response;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import mungsanbackend.daemaAuction.domain.*;
+import mungsanbackend.daemaAuction.domain.Product;
+import mungsanbackend.daemaAuction.domain.ProductImage;
+import mungsanbackend.daemaAuction.domain.ProductSaleStatus;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -24,6 +24,7 @@ public class ProductDetailsResponse {
     private List<ProductImage> productImages;
 
     // product - User
+    private String userId;
     private String username;
     private String email;
     private String profileImageUrl;
@@ -48,6 +49,7 @@ public class ProductDetailsResponse {
                 .auctionPrice(product.getAuctionPrice())
                 .views(product.getViews())
                 .productImages(product.getProductImages())
+                .userId(product.getUser().getUserId())
                 .username(product.getUser().getUsername())
                 .email(product.getUser().getEmail())
                 .profileImageUrl(product.getUser().getProfileImageUrl())
