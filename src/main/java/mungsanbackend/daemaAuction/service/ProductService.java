@@ -83,6 +83,13 @@ public class ProductService {
     }
 
     @Transactional
+    public void setImageUrl(Long productId, String url) throws Exception{
+        Product product = productRepository.findProductById(productId);
+        product.setImageUrl(url);
+        productRepository.updateImageUrl(productId, url);
+    }
+
+    @Transactional
     public ProductBuyResponse buyProduct(Long productId) throws Exception {
         User userInfo = userService.getUserInfo();
 

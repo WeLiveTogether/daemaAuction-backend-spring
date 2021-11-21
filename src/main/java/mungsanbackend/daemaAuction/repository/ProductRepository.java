@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findProductByUser(User user);
+
     Product findProductById(Long productId);
 
 
@@ -21,4 +22,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Modifying
     @Query(value = "UPDATE Product p SET p.auction_price= :price WHERE p.id = :id", nativeQuery = true)
     void updatePrice(@Param("id") Long id, @Param("price") int price) throws Exception;
+
+    @Modifying
+    @Query(value = "UPDATE Product p SET p.image_url= :url WHERE p.id = :id", nativeQuery = true)
+    void updateImageUrl(@Param("id") Long id, @Param("url") String url) throws Exception;
 }
