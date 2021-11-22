@@ -15,8 +15,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 
     @Modifying
-    @Query(value = "UPDATE Product p SET p.sale_status= 'SOLD_OUT' WHERE p.id = :id", nativeQuery = true)
-    void updateStatus(@Param("id") Long id) throws Exception;
+    @Query(value = "UPDATE Product p SET p.sale_status= 'SOLD_OUT', p.consumer_id= :consumerId WHERE p.id = :id", nativeQuery = true)
+    void updateStatus(@Param("id") Long productId, @Param("consumerId") String consumerId) throws Exception;
 
     @Modifying
     @Query(value = "UPDATE Product p SET p.auction_price= :price WHERE p.id = :id", nativeQuery = true)
