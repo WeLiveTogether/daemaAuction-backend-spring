@@ -68,7 +68,7 @@ public class ProductController {
 
     @Operation(summary = "사진 업로드", description = "성공 시 업로드 된 사진들 List로 반환")
     @PostMapping(value = "/product/image/upload")
-    public ResponseEntity<List<ProductImageResponse>> upload(@Parameter @RequestParam(value = "file") List<MultipartFile> multipartFile, @Parameter @RequestParam(value = "productId") String productId) throws IOException {
+    public ResponseEntity<List<ProductImageResponse>> upload(@Parameter @RequestParam(value = "file") List<MultipartFile> multipartFile, @Parameter @RequestParam(value = "productId") String productId) throws Exception {
         Long id = Long.parseLong(productId);
 
         List<ProductImageResponse> list = new ArrayList<>();
@@ -82,7 +82,7 @@ public class ProductController {
                 log.info(url);
             }
         }
-        product.get().setImageUrl(list.get(0).getUrl());
+        productService.setImageUrl(id, list.get(0).getUrl());
         return ResponseEntity.ok(list);
     }
 
